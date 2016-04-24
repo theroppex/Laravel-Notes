@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<?php $counter = 0; ?>
+
 @section('content')
 
 <div class="container">
@@ -16,7 +18,16 @@
             </div>
         @else
             @foreach ($notes as $note)
-                <div class="container-fluid col-md-4 ">
+                <!-- If you are reading this, please don't post it on /r/programminghorror. I konw it's 
+                terrible. -->
+                <!-- I will probably look at this couple years from now, and laugh -->
+                @if($counter % 3 == 0)
+                    @if($counter != 0)
+                    </div>
+                    @endif
+                    <div class="row">
+                @endif  
+                <div class="col-md-4 ">
                     <div class="card default-color white-text hoverable">
                         <div class="card-content">
                             
@@ -29,6 +40,7 @@
                         </div>
                     </div>   
                 </div>
+            <?php $counter += 1; ?>
             @endforeach
         @endif
     </div>
