@@ -4,47 +4,46 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
-        @if(count($notes)===0)
-            <div class="container">
+@include('snips/notes')
+
+<div id="add-note-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Note</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <form class="col-md-12" method="post" action="/add-note">
+                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1 text-center">
-                        
-                            <h1 >Hey, {{$user->name}}.</h1>
-                            <h5 class="muted">Start noting</h5>
+                    <div class="input-field col-md-12">
+                      <input type="text" name="title" class="materialize-textarea" required>
+                      <label for="textarea1">Title</label>
                     </div>
                 </div>
-            </div>
-        @else
-            @foreach ($notes as $note)
-                <!-- If you are reading this, please don't post it on /r/programminghorror. I konw it's 
-                terrible. -->
-                <!-- I will probably look at this couple years from now, and laugh -->
-                @if($counter % 3 == 0)
-                    @if($counter != 0)
+
+                <div class="row">
+                    <div class="input-field col-md-12">
+                      <textarea name="body" class="materialize-textarea" required></textarea>
+                      <label for="body">Note</label>
                     </div>
-                    @endif
-                    <div class="row">
-                @endif  
-                <div class="col-md-4 ">
-                    <div class="card default-color white-text hoverable">
-                        <div class="card-content">
-                            
-                            <span class="card-title">{{$note->title}}</span>
-                            <hr>
-                            <p>{{$note->body}}</p>
-                        </div>
-                        <div class="card-action">
-                            <a class=""><i class="material-icons white-text">delete</i></a>
-                        </div>
-                    </div>   
                 </div>
-            <?php $counter += 1; ?>
-            @endforeach
-        @endif
+                <div class="row">
+                    <div class="input-field cold-md-12">
+                        <button type="submit" class="btn btn-default waves-effect waves-light">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>
 
-<a class="btn-floating btn-small waves-effect waves-light red floating-button"><i class="material-icons">add</i></a>
+<a class="btn-floating btn-small waves-effect waves-light red floating-button" href="#" data-toggle="modal" data-target="#add-note-modal"><i class="material-icons">add</i></a>
 @endsection
