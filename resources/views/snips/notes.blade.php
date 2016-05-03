@@ -30,7 +30,7 @@
                             <p>{{$note->body}}</p>
                         </div>
                         <div class="card-action">
-                            <a class=""><i class="material-icons white-text">delete</i></a>
+                            <a class="" href="delete/{{$note->id}}"><i class="material-icons white-text">delete</i></a>
                         </div>
                     </div>   
                 </div>

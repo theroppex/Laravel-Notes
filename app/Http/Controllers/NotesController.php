@@ -26,4 +26,15 @@ class NotesController extends Controller
         $note->save();
         return back();
     }
+
+    public function deleteNote($noteId)
+    {   
+        $user = Auth::user();
+        $note = Note::find($noteId);
+        if($note->user_id != $user->id){
+            return back();
+        }
+        $note->delete();
+        return back();
+    }
 }

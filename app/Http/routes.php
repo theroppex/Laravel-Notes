@@ -20,3 +20,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::post('/add-note', 'NotesController@addNote');
+
+Route::get('/delete/{noteId}', 'NotesController@deleteNote');
