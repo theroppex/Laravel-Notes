@@ -19,7 +19,7 @@
     <link href="{!! asset('css/mdb.css') !!}" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{!!asset('css/app.css')!!}">
    
 </head>
 
